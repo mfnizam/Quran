@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Quran</string>
-    <string name="title_activity_main">Quran</string>
-    <string name="package_name">com.mfnizam.quran</string>
-    <string name="custom_url_scheme">com.mfnizam.quran</string>
-</resources>
