@@ -1,0 +1,77 @@
+<ion-content>
+	<div class="h-100 d-flex flex-column o-hidden p-relative">
+		<div class="b-primary c-primary-contrast w-100 ion-padding"> 
+			<div class="d-flex ion-align-items-center mb-2">
+				<ion-searchbar mode="ios" placeholder="Cari Surat atau tafsir" class="ion-no-padding b-primary-contrast border-card" style="height: 34px;"></ion-searchbar>
+				<div class="ml-1 d-flex">
+					<ion-icon name="bookmark" [class.opacity-2]="!this.quran.bookmark.urutan || !this.quran.bookmark.ayat" style="font-size: 24pt; margin-right: -5px;" (click)="openBookmark()"></ion-icon>
+				</div>
+			</div>
+			<div class="mb-2 pt-1">
+				<div style="font-size: 28pt;"><b>Al-Qur'an</b></div>
+			</div>
+		</div>
+
+		<div class="flex-1 shadow-card-up b-primary-900 mt--2 border-top-2 o-auto p-relative scroll-hide ion-padding-start ion-padding-end">
+			<!-- <ion-content class="h-100 ion-padding-start ion-padding-end b-primary-900 pb-3">
+				<ion-virtual-scroll [items]="dataSurat" approxItemHeight="80px">
+					<div *virtualItem="let s;" [routerLink]="['detail']" [queryParams]="{surat: s.urutan}" class="c-dark-tint d-flex ion-align-items-center px-1 pt-1">
+						<div class="w-3r"><b>{{s.urutan}}</b></div>
+						<div class="flex-1 d-flex ion-align-items-center py-2 border-bottom-primary-750">
+							<div class="flex-shrink-0">
+								<h5 class="ion-no-margin"><b>{{s.nama}}</b></h5>
+								<small class="ion-text-capitalize">{{s.turun}} - {{s.jumlahAyat}} Ayat</small>
+							</div>
+							<div class="flex-1 ion-text-right">
+								<h5 class="ion-no-margin">{{s.arab}}</h5>
+								<small class="ion-text-capitalize">{{s.arti}}</small>
+							</div>
+						</div>
+					</div>
+				</ion-virtual-scroll>
+			</ion-content> -->
+
+			<div *ngFor="let s of dataSurat; trackBy: suratTrackBy" [routerLink]="['detail']" [queryParams]="{surat: s.urutan}" class="c-dark-tint d-flex ion-align-items-center px-1 pt-1">
+				<div class="w-3r"><b>{{s.urutan}}</b></div>
+				<div class="flex-1 d-flex ion-align-items-center py-2 border-bottom-primary-750">
+					<div class="flex-shrink-0">
+						<h5 class="ion-no-margin"><b>{{s.nama}}</b></h5>
+						<small class="ion-text-capitalize">{{s.turun}} - {{s.jumlahAyat}} Ayat</small>
+					</div>
+					<div class="flex-1 ion-text-right">
+						<h5 class="ion-no-margin">{{s.arab}}</h5>
+						<small class="ion-text-capitalize">{{s.arti}}</small>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="p-absolute b-0 w-100 b-primary c-primary-contrast border-top-2 ion-padding t-t--110" style="transition: transform .3s;" [style.transform]="audio.playerQuran.show? 'translateX(0)' : ''">
+			<div class="d-flex ion-align-items-center ion-justify-content-center pb-1">
+				<div class="flex-1 ion-shrink-0 ion-text-capitalize" (click)="goToPutar()">
+					<small>Diputar</small>
+					<div class="text-max text-max-1"><b>{{dataPlay?.surat || '-'}} : {{dataPlay?.ayat || '-'}}</b></div>
+				</div>
+				<!-- <div class="d-flex mr-2" style="font-size: 16pt;" (click)="player.mute()"><ion-icon [name]="player.playerMuted? 'volume-mute' : 'volume-high'"></ion-icon></div> -->
+				<div class="d-flex mr-2" style="font-size: 16pt;" (click)="close()"><ion-icon name="close"></ion-icon></div>
+				<div class="d-flex ion-justify-content-center mr-2 p-relative" style="font-size: 16pt;" (click)="audio.playerQuran.repeat = !audio.playerQuran.repeat">
+					<ion-icon name="repeat"></ion-icon>
+					<!-- <span style="font-size: 8px; position: absolute; bottom: -6px; left: 1px;">surat</span> -->
+					<div *ngIf="audio.playerQuran.repeat" style="position: absolute; bottom: -5px; width: 5px; height: 5px; background: var(--ion-color-primary-contrast); border-radius: 50%;"></div>
+				</div>
+				<div class="d-flex" [class.opacity-2]="dataPlay?.ayat < 2" (click)="audio.playerQuranPrev()"><ion-icon name="play-skip-back"></ion-icon></div>
+				<div class="border-round d-flex mx-2 b-primary-contrast c-primary" [class.opacity-2]="!dataPlay?.ayat" style="padding: 0.8rem;" (click)="playpause(dataPlay?.ayat, dataPlay?.urutan)">
+					<ion-icon [name]="audio.playerQuran.played? 'pause' : 'play'" [style.transform]="audio.playerQuran.played? '' : 'translateX(1px)'"></ion-icon>
+				</div>
+				<div class="d-flex" [class.opacity-2]="dataPlay?.ayat >= dataPlay?.jAyat && !audio.playerQuran.repeat" (click)="audio.playerQuranNext()"><ion-icon name="play-skip-forward"></ion-icon></div>
+			</div>
+
+			<div class="p-relative pb-1" style="padding-left: 6px;">
+				<ion-range color="light" min="0" [max]="audio.playerQuran.duration" [(ngModel)]="audio.playerQuran.currentTime" (ngModelChange)="audio.playerQuranSeek($event)" class="ion-no-padding"></ion-range>
+				<div class="p-absolute l-0 b-0"><small>{{audio.playerQuran.currentTime | duration }}</small></div>
+				<div class="p-absolute r-0 b-0"><small>{{audio.playerQuran.duration | duration }}</small></div>
+			</div>
+
+			<!-- <audio id="suratPlayer" #suratPlayer class="d-none" (loadeddata)="loadeddata($event.target.duration)" (timeupdate)="timeupdate($event.target.currentTime)" (play)="play($event)" (pause)="pause($event)" (ended)="next(true)"><source [src]="playerUrl + audioAyatke + '.mp3'" type="audio/mp3"></audio> -->
+		</div>
+	</div>
+</ion-content>

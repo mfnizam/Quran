@@ -1,0 +1,50 @@
+<ion-content>
+	<div class="h-100 d-flex flex-column o-hidden">
+		<div class="b-primary c-primary-contrast w-100 pb-2"> 
+			<div class="d-flex ion-padding fs-20pt">
+				<div class="d-none back-btn ion-no-padding font-bold mr-1"><ion-icon name="arrow-back" (click)="goBack()"></ion-icon></div>
+				<div class="flex-1 ion-text-capitalize">
+					<div class="text-max text-max-1 wp-nowrap"><b>Daftar Qori</b></div>
+				</div>
+				<div class="d-flex ion-align-items-center border-primary-900 border-card px-1" style="font-size: 12pt;" (click)="simpan()">
+					 <ion-icon name="checkmark-outline"></ion-icon><div class="ml-05">Simpan</div> 
+				</div>
+			</div>
+		</div>
+
+		<div class="flex-1 shadow-card-up mt--2 border-top-2 b-primary-900 o-hidden p-relative scroll-hide p-1">
+			<!-- <ion-content class="ion-padding-start ion-padding-end b-primary-900 pb-3">
+				<ion-virtual-scroll [items]="dataSurat" approxItemHeight="80px">
+					<div *virtualItem="let s;" class="c-dark-tint d-flex ion-align-items-center px-1 pt-1">
+						<div class="w-3"><b>{{s.urutan}}</b></div>
+						<div class="flex-1 d-flex ion-align-items-center py-2 border-bottom-primary-750">
+							<div class="flex-1">
+								<h5 class="ion-no-margin"><b>{{s.nama}}</b></h5>
+								<small class="ion-text-capitalize">{{s.turun}} - {{s.jumlahAyat}} Ayat</small>
+							</div>
+							<div class="fs-20pt d-flex" [class.c-primary]="s.playlist" (click)="s['playlist'] = !s['playlist']">
+								<ion-icon [name]="s.playlist? 'checkmark-circle-outline' : 'add-circle-outline'"></ion-icon>
+							</div>
+						</div>
+					</div>
+				</ion-virtual-scroll>
+			</ion-content> -->
+			<ion-radio-group [(ngModel)]="qoriPilih">
+				<div *ngFor="let q of dataQori" class="d-flex ion-align-items-center border-bottom-primary-750">
+					<ion-item lines="none" class="w-100 border-card" style="--background: none; --padding-top: 1rem; --padding-bottom: 1rem">
+						<div class="d-flex mr-2">
+							<img [src]="q.foto" class="h-4 w-4 border-card" style="object-fit: cover;">
+						</div>
+						<div class="flex-1"><b>{{q.nama}}</b></div>
+						<ion-radio slot="end" [value]="q._id"></ion-radio>
+					</ion-item>
+					<!-- <div class="p-1">Pilih</div> -->
+					<!-- <div *ngIf="q._id == qoriPilih?._id" class="fs-20pt d-flex">
+						<ion-icon name="checkmark-circle-outline"></ion-icon>
+					</div> -->
+				</div>
+			</ion-radio-group>
+		</div>
+	</div>
+</ion-content>
+

@@ -1,0 +1,67 @@
+<ion-content>
+	<div class="h-100 d-flex flex-column flex-1 o-hidden p-relative b-primary-900 ion-padding-top">
+		<div class="mb-1 ion-text-center c-dark-tint" style="font-size: 28pt;"><b>Murottal</b></div>
+		<div class="d-flex ion-align-items-center ion-justify-content-center" style="padding: 1rem 2rem; flex: 3">
+			<div class="h-100 border-3 b-primary" style="background-image: url({{dataPlay?.qori?.foto || 'assets/murottal-placeholder.png'}}); background-position: center; background-size: cover; box-shadow: var(--ion-color-primary-300) 0px 0 20px 0px; max-height: calc(100vw - 4rem); width: calc(100vh - 357px - 2rem); border: 1px solid var(--ion-color-primary-500);"></div>
+		</div>
+		<div class="ion-padding-start ion-padding-end c-dark-tint" style="flex: 1; display: grid; grid-template-columns: 1fr 3fr 1fr; align-items: center; justify-items: center; min-height: 88px; margin-bottom: 1rem;">
+			<div routerLink="qori" class="d-flex flex-column ion-align-items-center">
+				<ion-icon name="people" style="font-size: 16pt; margin-bottom: 5px;"></ion-icon>
+				<div style="font-size: 8pt;">Qori</div>
+			</div>
+			<div class="ion-text-center">
+				<h3 class="ion-no-margin text-max text-max-1" [style.opacity]="dataPlay?.qori? 1 : .2"><b>{{dataPlay?.qori?.nama || 'Tidak ada qori'}}</b></h3>
+				<div class="c-primary" [style.opacity]="dataPlay?.surat? 1 : .2">{{dataPlay?.surat?.nama || 'Tidak ada surat'}}</div>
+			</div>
+			<div routerLink="playlist" class="d-flex flex-column ion-align-items-center">
+				<ion-icon name="list" style="font-size: 16pt; margin-bottom: 5px;"></ion-icon>
+				<div style="font-size: 8pt;">Playlist</div>
+			</div>
+		</div>
+		<div class="d-flex flex-column ion-padding shadow-card-up mt--2 border-top-2 b-primary">
+			<div class="flex-1 c-primary-contrast pb-1" style="display: grid; grid-template-columns: repeat(5, 1fr); justify-items: center; align-items: center; font-size: 16pt;">
+				<div class="d-flex" (click)="audio.playerMurottalMute()"><ion-icon [name]="audio.playerMurottal.muted? 'volume-mute' : 'volume-high'"></ion-icon></div>
+				<div class="d-flex" [class.opacity-2]="audio.playerMurottal.playIndex < 1" (click)="audio.playerMurottalPrev()"><ion-icon name="play-skip-back"></ion-icon></div>
+				<div class="border-round d-flex c-primary b-primary-contrast" [class.opacity-2]="!audio.playerMurottal.loaded" style="padding: 0.8rem;" (click)="playpause()">
+					<ion-icon [name]="audio.playerMurottal.played && audio.playerMurottal.loaded? 'pause' : 'play'" [style.transform]="audio.playerMurottal.played? '' : 'translateX(1px)'"></ion-icon>
+				</div>
+				<div class="d-flex" [class.opacity-2]="audio.playerMurottal.playIndex + 1 >= audio.playerMurottal.playlistLength && audio.playerMurottal.repeat != 1" (click)="audio.playerMurottalNext()"><ion-icon name="play-skip-forward"></ion-icon></div>
+				<div class="d-flex flex-column ion-align-items-center p-relative" (click)="audio.playerMurottalRepeat()">
+					<ion-icon name="repeat"></ion-icon>
+					<span *ngIf="audio.playerMurottal.repeat > 1" style="font-size: 8px; position: absolute; right: 0px;">1</span>
+					<div *ngIf="audio.playerMurottal.repeat > 0" style="position: absolute; bottom: -5px; width: 5px; height: 5px; background: var(--ion-color-primary-contrast); border-radius: 50%;"></div>
+				</div>
+			</div>
+
+			<div class="p-relative c-primary-contrast pb-2" style="padding-left: 6px;">
+				<!-- <ion-range color="primary" min="0" [max]="audio.audioDuration" [(ngModel)]="audio.audioCurrentTime" (ngModelChange)="audio.changeTime($event)" class="ion-no-padding"></ion-range> -->
+				<ion-range color="light" min="0" [max]="audio.playerMurottal.duration" [(ngModel)]="audio.playerMurottal.currentTime" (ngModelChange)="audio.playerMurottalSeek($event)" class="ion-no-padding"></ion-range>
+				<!-- <div class="p-absolute l-0 b-0"><small>{{(audio.playerMurottal.currentTime * 1000) | date: 'H:mm:ss':'UTC' }}</small></div> -->
+				<!-- <div class="p-absolute r-0 b-0"><small>{{(audio.playerMurottal.duration * 1000) | date: 'H:mm:ss':'UTC' }}</small></div> -->
+				<div class="p-absolute l-0 b-0"><small>{{audio.playerMurottal.currentTime | duration}}</small></div>
+				<div class="p-absolute r-0 b-0"><small>{{audio.playerMurottal.duration | duration}}</small></div>
+			</div>
+		</div>
+	</div>
+	<!-- <audio id="audioPlayer" controls="controls" #audioPlayer class="d-snone"><source id="srcAudioPlayer" src="https://server7.mp3quran.net/s_gmd/001.mp3" type="audio/mp3"></audio> -->
+
+	<!-- <div class="flex-1 shadow-card-up mt--2 border-top-2 o-hidden p-relative b-primary-900">
+		<ion-content class="ion-padding-start ion-padding-end b-primary-900">
+			<ion-virtual-scroll [items]="dataSurat" approxItemHeight="80px">
+				<div *virtualItem="let s;" class="c-dark-tint d-flex ion-align-items-center px-1 pt-1">
+					<div [routerLink]="['detail']" [queryParams]="{surat: s.urutan}" class="w-3"><b>{{s.urutan}}</b></div>
+					<div class="flex-1 d-flex ion-align-items-center border-bottom-primary-750">
+						<div [routerLink]="['detail']" [queryParams]="{surat: s.urutan}" class="flex-1 p-2">
+							<h5 class="ion-no-margin"><b>{{s.nama}}</b></h5>
+							<small class="ion-text-capitalize">{{s.arti}} ({{s.jumlahAyat}}) - {{s.turun}}</small>
+						</div>
+						<div class="d-flex ml-2" style="font-size: 16pt;">
+							<ion-icon [name]="player?.urutan == s.urutan && playerMurottal.playerPlay? 'pause' : 'play'" [class.c-primary]="player?.urutan == s.urutan" (click)="playpause(s)"></ion-icon>
+						</div>
+					</div>
+				</div>
+			</ion-virtual-scroll>
+			<div class="w-100" [style.height]="player? '140px' : '2rem'"></div>
+		</ion-content>
+	</div> -->
+</ion-content>

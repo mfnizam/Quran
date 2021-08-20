@@ -1,0 +1,60 @@
+{
+        "name": "Al Lisan (اللسان)",
+        "definisi": "Al Lisan artinya lisan dimana bunyi huruf hijaiyah dengan tempat keluarnya dari lidah. Terdapat 18 huruf yang dapat dikelompokkan menjadi 10 makhraj. ",
+        "Huruf Al Lisan" : "Berdasarkan urutan tempat keluarnya dari lidah sebagai berikut : ",
+        "1. Aqshal Lisan Fauqa (Pangkal Lidah Belakang)" :
+        {
+            "1" : "Huruf Qof (ق), bunyi huruf qof ini keluar dari pangkal lidah dekat dengan kerongkongan yang dihimpitkan ke langit-langit mulut bagian atas (belakang)."
+        },
+        "2. Aqshal Lisan Asfal (Pangkal Lidah Depan)" :
+        {
+            "1" : "Huruf Kaf (ك), bunyi huruf kaf ini keluar dari pangkal lidah di depan makhraj huruf qof, yang dihimpitkan ke langit-langit bagian mulut bagian tengah."
+        },
+        "3. Wasthul Lisan (Tengah Lidah)" :
+        {
+            "1" : "Huruf Jim ( ج ), bunyi huruf jim keluar dari tengah lidah yang dianikkan ke langit-langit bagian atas.",
+            "2" : "Huruf Syin ( ش ), bunyi huruf syin keluar ditempat yang sama seperti jim, namun sifat tafasy (angin yang menyebar/berhamburan).",
+            "3" : "Huruf Ya’ ( ي ), bunyi ya' berada ditengah lidah namun di naikkan sedikit tanpa menempel denga  langit-langit atas."
+           
+        },
+
+        "4. Pangkal Tepi Lidah" :
+        {
+            "1" : "Huruf Dhod ( ض ), bunyi huruf berada dpinggir lidah dikiri dan kanan (atau dipilih salah satu kiri atau kanan) dimana lidah ditarik dari belakang dalam posisi ditempel ditepi dibawa kedepan seraya diucapkan."
+        },
+
+        "5. Pinggir Ujung Lidah" :
+        {
+            "1" : "Huruf Lam (ل), bunyi huruf lam keluar dari ujung lidah kiri/kanan bertemu dengan langit-langit bagian atas."
+        },
+
+        "6. Ujung Lidah" :
+        {
+            "1" : "Huruf Nun (ن), bunyi huruf nun keluar dari ujung lidah ditempelkan ke langit-langit depan bagian atas."
+        },
+
+        "7. Ujung Lidah Tepat" :
+        {
+            "1" : "Huruf Ro’ (ر), bunyi huruf ro' keluar dari ujung lidah  bertemu dengan langit-langit ujung bagian atas."
+        },
+        "8. Punggung Ujung Lidah" :
+        {
+            "1" : "Huruf Tho’ (ط), bunyi huruf tho' keluar dari punggung ujung lidah bertemu dengan papan gigi seri atas bagian dalam dengan lafal yang tebal (isti'la) membuat lidah tegang.",
+            "2" : "Huruf Dal (د), bunyi huruf dal keluar dari punggung ujung lidah bertemu dengan papan gigi seri atas bagian dalam dengan lafal yang berbeda dari ta'.",
+            "3" : "Huruf Ta’ (ت), bunyi huruf ta' keluar dari punggung ujung lidah bertemu dengan papan gigi seri atas bagian dalam."
+        },
+        "9. Punggung Ujung Lidah Bawah" :
+        {
+            "1" : "Huruf Shod (ص), bunyi huruf shod keluar dari punggung ujung lidah bertemu dengan papan gigi seri bawah bagian dalam dengan lafal yang tebal (isti'la) membuat lidah tegang.",
+            "2" : "Huruf Sin (س), bunyi huruf sin keluar dari punggung ujung lidah bertemu dengan papan gigi seri bawah bagian dalam, ketiganya memiliki sifat shofir (desis) saat sebelum terucap.",
+            "3" : "Huruf Za’ (ز), bunyi huruf za' keluar dari punggung ujung lidah bertemu dengan papan gigi seri bawah bagian dalam dengan lafal yang berbeda dari ta'."
+           
+        },
+        "10. Ujung Lidah & Gigi Atas" :
+        {
+            "1" : "Huruf Dzho’ (ظ), bunyi huruf shod keluar keluar dari ujung lidah ditempelkan pada ujung gigi seri atas dengan lafal yang tebal (isti'la) membuat lidah tegang.",
+            "2" : "Huruf Dzal (ذ), bunyi huruf dzal keluar dari ujung lidah ditempelkan pada ujung gigi seri atas.",
+            "3" : "Huruf Tsa’ (ث), bunyi huruf tsa' keluar dari ujung lidah ditempelkan pada ujung gigi seri atas."
+                    }        
+}
+

@@ -1,0 +1,23 @@
+{
+        "name": "Al Halq (الحلق)",
+        "definisi": "Yaitu tempat keluar bunyi huruf hijaiyah yang terletak pada kerongkongan / tenggorokan. Dan berdasarkan perbedaan teknis pelafalannya, huruf-huruf halqiyah (huruf-huruf yang keluar dari tenggorokan) dibagi menjadi tiga bagian lagi.",
+        "Huruf Al Halq" : "Berdasarkan urutan tempat keluarnya sebagai berikut : ",
+        "Aqshal Halqi (pangkal tenggorokan)" :
+        {
+            "1" : "Huruf hamzah ( ء ),",
+            "2" : "Huruf ha’ besar ( ه )"
+        },
+        
+          "Wasthul Halqi (pertengahan tenggorokan)" :
+        {
+            "1" : "Huruf ’ain ( ع )",
+            "2" : "Huruf ha kecil ( ح )."
+        },
+
+          "Adnal Halqi (ujung tenggorokan)" :
+        {
+            "1" : "Huruf kho’ ( خ )",
+            "2" : "Huruf ghoin ( غ ),"
+        }
+}
+

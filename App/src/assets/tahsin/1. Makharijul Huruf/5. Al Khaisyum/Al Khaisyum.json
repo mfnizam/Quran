@@ -1,0 +1,11 @@
+{
+        "name": "Al Khaisyum  (الخيشوم)",
+        "definisi": "Yaitu tempat keluarnya huruf hijaiyah yang terletak pada janur hidung. Dan jika kita menutup hidung ketika membunyikan huruf tersebut, maka tidak dapat terdengar.",
+        "Huruf Al Khaisyum" : "Adapun huruf-hurufnya yaitu huruf-huruf ghunnah mim dan nun dengan ketentuan sebagai berikut: ",
+        "Al Khaisyum" :
+        {
+            "1" : "Huruf Nun bertasydid (نّ). Nun sukun yang dibaca idghom bigunnah, iqlab dan ikhfa’ haqiqi",
+            "2" : "Huruf Mim bertasydid (مّ). Mim sukun yang bertemu dengan mim (م) atau ba (ب),"
+        }
+}
+

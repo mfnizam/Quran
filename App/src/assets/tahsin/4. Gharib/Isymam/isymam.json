@@ -1,0 +1,15 @@
+{
+        "name": "Isymam",
+        "definisi": "merunut arti secara bahasa, isymam diartikan dengan menggabungkan. Secara istilah, pengertian isymam adalah menggabungkan dua bibir setelah huruf sukun untuk mengisyaratkan dlummah tanpa menimbulkan suara atau napas. ",
+        "contoh bacaan": "Dalam Al Qur'an riwayat Hafs 'an 'Ashim yang sering kita baca di Al Qur'an cetakan Indonesia dalam Surah Yusuf ayat 11.",
+        "text": {
+            "tanda": "إِشْمَامُ kecil",
+            "bacaan": "لَا تَأْمَنَّا",
+            "caranya": {
+                "1" : "Sukun huruf nun. Sehingga bunyinya menjadi man atau مَنْ.",
+                "2" : "Moncongkan bibir, satukan. Cara memoncongkan bibir ini seperti ketika Anda mengucapkan huruf nun berharakat dlummah. Memoncongkan bibir ini sekaligus menjadi isyarat dlummah yang menjadi maksud bacaan isymam.",
+                "3" : "Posisikan mulut seperti sediakala, seperti saat akan mengucapkan nun berharakat fathah.",
+                "4" : "Ucapkan na seperti biasa."
+            }
+        }
+}

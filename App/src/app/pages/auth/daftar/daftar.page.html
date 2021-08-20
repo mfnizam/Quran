@@ -1,0 +1,53 @@
+<ion-content class="ion-padding">
+	<div class="h-100 d-flex flex-column">
+		<div style="font-size: 2rem;" (click)="goBack()">
+			<ion-icon name="arrow-back" color="primary"></ion-icon>
+		</div>
+		<div class="flex-1 d-flex ion-align-items-center">
+			<div class="c-primary" style="font-size: 52pt;"><b>Daftar</b></div>
+		</div>
+		<form [formGroup]="form" id="formdaftar" class="flex-2 d-flex flex-column" (ngSubmit)="daftar()">
+			<ion-item lines="none" class="border-card mb-2 b-light">
+				<ion-label [color]="form.controls.eAn.invalid && form.controls.eAn.dirty? 'danger' : 'primary'" position="floating">Daftar dengan Email</ion-label>
+				<ion-input formControlName="eAn" type="text"></ion-input>
+			</ion-item>
+			<ion-item lines="none" class="border-card mb-2 b-light">
+				<ion-label [color]="form.controls.nama.invalid && form.controls.eAn.dirty? 'danger' : 'primary'"  position="floating">Nama Lengkap Anda</ion-label>
+				<ion-input formControlName="nama" type="text"></ion-input>
+			</ion-item>
+
+			<div class="p-relative mb-2">
+				<div class="p-absolute r-0 h-100 d-flex ion-align-items-center ion-justify-content-center w-3r" style="z-index: 10;" (click)="showPass = !showPass">
+					<ion-icon [name]="showPass? 'eye-off' : 'eye'" [color]="showPass? 'primary' : 'medium'"></ion-icon>
+				</div>
+				<ion-item lines="none" class="border-card b-light">
+					<ion-label [color]="form.controls.password.invalid && form.controls.eAn.dirty? 'danger' : 'primary'"  position="floating">Password</ion-label>
+					<ion-input formControlName="password" [type]="showPass? 'text' : 'password'" name="password" required></ion-input>
+				</ion-item>
+			</div>
+			<ion-item lines="none" class="c-password" class="border-card mb-2 b-light">
+				<ion-label [color]="form.controls?.confPassword?.value && (form.controls?.password?.value != form.controls?.confPassword?.value)? 'danger' : 'primary'" position="floating">Konfirmasi Password</ion-label>
+				<ion-input formControlName="confPassword" [type]="showPass? 'text' : 'password'" name="password" required></ion-input>
+			</ion-item>
+
+			<div style="transition: transform .5s; z-index: 10;">
+				<div class="d-flex" style="padding: 1rem 0 0 0; height: 32px;">
+					<div class="flex-1 c-danger text-max text-max-1" style="font-size: 9pt; padding: 0 16px;"><span *ngIf="form.errors">{{form.errors.err}}</span></div>
+				</div>
+				<!-- <button type="submit" class="btn-masuk" [disabled]="form.invalid">
+					<div *ngIf="!isLoading">{{isEmail? 'Daftar' : 'Selanjutnya'}}</div>
+					<ion-spinner *ngIf="isLoading" color="white"></ion-spinner>
+				</button> -->
+
+				<ion-button type="submit" mode="ios" color="primary" class="w-100 h-auto ion-no-margin">
+					<div class="my-2 d-flex ion-align-items-center ion-justify-content-center">
+						<div [class.opacity-0]="loadingDaftar">Daftar</div>
+						<ion-spinner *ngIf="loadingDaftar" color="light" class="p-absolute"></ion-spinner>
+					</div>
+				</ion-button>
+			</div>
+		</form>
+		
+		<div class="ion-text-center c-medium"><small>Sudah punya akun? <a (click)="goBack()"><b>Masuk</b></a></small></div>
+	</div>
+</ion-content>

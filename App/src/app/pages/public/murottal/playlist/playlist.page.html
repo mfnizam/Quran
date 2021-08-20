@@ -1,0 +1,50 @@
+<ion-content>
+	<div class="h-100 d-flex flex-column o-hidden">
+		<div class="b-primary c-primary-contrast w-100 pb-2"> 
+			<div class="d-flex ion-padding fs-20pt">
+				<div class="d-none back-btn ion-no-padding font-bold mr-1"><ion-icon name="arrow-back" (click)="goBack()"></ion-icon></div>
+				<div class="flex-1 ion-text-capitalize">
+					<div class="text-max text-max-1 wp-nowrap"><b>Daftar Putar</b></div>
+				</div>
+				<div [routerLink]="['/murottal/surat']" class="d-flex ion-align-items-center">
+					<ion-icon name="add-circle-outline"></ion-icon>
+				</div>
+			</div>
+		</div>
+		<div class="flex-1 shadow-card-up mt--2 b-primary-900 border-top-2 o-hidden p-relative">
+			<div *ngIf="dataPlaylist?.length < 1" class="h-100 ion-padding c-dark-tint d-flex flex-column ion-align-items-center ion-justify-content-center">
+				<div><b>Antrian Kosong</b></div>
+				<small class="c-medium mb-2">Kamu bisa menambahkan antrian dari daftar surat</small>
+				<div [routerLink]="['/murottal/surat']" class="d-flex ion-align-items-center p-1 b-primary border-card c-primary-contrast">
+					<ion-icon name="add-circle-outline" class="mr-1"></ion-icon> 
+					<div style="margin-bottom: -2px; margin-right: 3px;">Buka Daftar Surat</div>
+				</div>
+			</div>
+			<ion-content *ngIf="dataPlaylist?.length > 0" class="b-primary-900 pb-3 ion-padding-start ion-padding-end">
+				<!-- <ion-virtual-scroll [items]="dataPlaylist" approxItemHeight="80px">
+					<div *virtualItem="let s;" class="c-dark-tint d-flex ion-align-items-center px-1 pt-1">
+						<div class="w-3"><b>{{s.urutan}}</b></div>
+						<div class="flex-1 d-flex ion-align-items-center py-2 border-bottom-primary-750">
+							<div class="flex-1">
+								<h5 class="ion-no-margin"><b>{{s.nama}}</b></h5>
+								<small class="ion-text-capitalize">{{s.turun}} - {{s.jumlahAyat}} Ayat</small>
+							</div>
+						</div>
+						<ion-reorder slot="end"></ion-reorder>
+					</div>
+				</ion-virtual-scroll> -->
+
+				<ion-reorder-group (ionItemReorder)="reorderItems($event)" disabled="false">
+					<div *ngFor="let s of dataPlaylist;" class="c-dark-tint d-flex ion-align-items-center py-2 px-1 border-card border-bottom-primary-750">
+						<div class="flex-1" [class.c-primary]="suratPlay == s.urutan" (click)="play(s)">
+							<h5 class="ion-no-margin"><b>{{s.nama}}</b></h5>
+							<small class="ion-text-capitalize">{{s.turun}} - {{s.jumlahAyat}} Ayat</small>
+						</div>
+						<!-- <div class="d-flex p-1 mr-1"><ion-icon [name]="s.urutan == suratUrutan && false? 'stop' : 'play'" [color]="s.urutan == suratUrutan? 'primary' : 'dark'"></ion-icon></div> -->
+						<ion-reorder slot="start"></ion-reorder>
+					</div>
+				</ion-reorder-group>
+			</ion-content>
+		</div>
+	</div>
+</ion-content>

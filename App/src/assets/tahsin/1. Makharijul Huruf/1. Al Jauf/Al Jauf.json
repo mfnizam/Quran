@@ -1,0 +1,12 @@
+{
+        "name": "Al Jauf (الجوف)",
+        "definisi": "Yaitu tempat keluarnya huruf hijaiyah yang terletak pada rongga mulut dan rongga tenggorokan bisa disebut bagian dari mad.",
+        "Huruf Al Jauf" : "Bunyi huruf yang keluar dari rongga mulut dan rongga tenggorokan ada tiga macam yaitu : ",
+        "Al Jauf" :
+        {
+            "1" : "Huruf alif ( ا ), ketika sebelum hurufnya berharakat fathah (baris atas) maka dibaca panjang 2 harakat. Membuka mulut sesuai dengan makhorijul huruf sebelum alif",
+            "2" : "Huruf wauw mati ( وْ ), ketika sebelum hurufnya berharakat dommah maka dibaca panjang 2 harakat. Dibuat mencucu seperti penyebutan tanda harakat dommah." ,
+            "3" : "Huruf ya’ mati ( يْ ), ketika sebelum hurufnya berharakat kasrah (baris atas) maka dipanjang panjang 2 harakat. Dibaca cengir atau tersenyum seperti penyebutan kasrah."
+        }
+}
+

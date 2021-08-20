@@ -1,0 +1,129 @@
+<ion-content class="b-primary-900">
+	<div class="h-100 d-flex flex-column o-hidden">
+		<div class="ion-padding b-primary c-primary-contrast pb-2">
+			<div class="d-flex ion-align-items-center pb-2">
+				<div class="mr-2">
+					<div class="h-3r w-3r border-round b-primary-800"></div>
+				</div>
+				<div class="flex-1">
+					<h3 class="ion-no-margin ion-text-capitalize text-max text-max-1">Halo, <b>{{userData?.namaLengkap || '-'}}</b></h3>
+					<!-- <small class="">{{userData?.email || '-'}}</small> -->
+				</div>
+				<div style="font-size: 22pt;" (click)="openBookmark()">
+					<ion-icon name="bookmark"></ion-icon>
+				</div>
+			</div>
+			<div class="b-background p-relative o-hidden c-primary border-card border-primary-contrast mb-2">
+				<div class="p-2">
+					<div>Waktu {{waktuSolatSelanjutnya[0] || '-'}}</div>
+					<div style="font-size: 22pt;"><b>{{waktuSolatSelanjutnya[1] || '-:-'}} WIB</b></div>
+					<small>{{waktuSolatJarak || '-'}}</small>
+				</div>
+				<div class="p-absolute" style="top: 8px; right: 4px;">
+					<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="66.2pt" height="78.1pt" viewBox="0 0 362.000000 481.000000"preserveAspectRatio="xMidYMid meet">
+						<g transform="translate(0.000000,481.000000) scale(0.100000,-0.100000)" stroke="none" style="fill: var(--ion-color-primary-600)">
+							<path d="M1725 4771 c-143 -35 -271 -157 -316 -301 -75 -241 55 -494 294 -571
+							l67 -22 0 -62 c0 -57 -3 -66 -30 -93 -18 -18 -30 -41 -30 -56 0 -14 -5 -26
+							-11 -26 -6 0 -26 -7 -45 -16 -41 -19 -64 -59 -64 -107 0 -34 -1 -35 -49 -41
+							-204 -27 -445 -148 -582 -293 -109 -114 -196 -266 -245 -428 -27 -88 -28 -97
+							-32 -389 l-4 -299 -29 -24 c-27 -23 -29 -30 -29 -96 0 -58 4 -75 21 -93 l20
+							-22 -38 -7 c-60 -11 -137 -53 -188 -104 -68 -67 -104 -144 -117 -252 l-11 -89
+							-42 0 c-28 0 -51 -7 -69 -21 l-26 -20 0 -580 0 -579 -30 0 c-44 0 -70 -31 -70
+							-83 0 -85 -177 -77 1752 -77 1649 0 1716 1 1731 18 10 11 17 36 17 60 0 51
+							-27 82 -70 82 l-30 0 0 579 0 580 -26 20 c-18 14 -41 21 -70 21 -35 0 -44 4
+							-44 18 -2 71 -23 169 -49 219 -51 102 -161 189 -264 208 l-38 7 20 22 c17 18
+							21 35 21 93 0 66 -2 73 -29 96 l-29 24 -4 299 c-4 291 -5 301 -31 389 -62 204
+							-179 380 -336 507 -137 110 -325 192 -492 214 -48 6 -49 7 -49 41 0 48 -23 88
+							-64 107 -19 9 -39 16 -45 16 -6 0 -11 12 -11 26 0 15 -12 38 -30 56 -27 27
+							-30 36 -30 92 l0 63 48 7 c98 13 215 86 284 178 48 64 48 75 1 31 -221 -204
+							-578 -80 -634 221 -21 116 16 231 105 321 77 77 137 106 241 114 l80 7 -40 12
+							c-43 13 -181 15 -230 3z m190 -3147 c118 -30 206 -103 259 -214 l31 -65 3
+							-552 2 -553 -390 0 -391 0 3 553 3 552 31 65 c52 109 141 183 254 214 72 19
+							123 19 195 0z m-940 -501 c28 -18 61 -48 74 -67 48 -73 50 -88 51 -463 l0
+							-353 -260 0 -261 0 3 368 c3 355 4 368 25 408 28 53 78 102 128 126 31 14 58
+							18 115 16 65 -3 82 -7 125 -35z m1930 18 c49 -23 100 -72 128 -125 21 -40 22
+							-53 25 -408 l3 -368 -261 0 -261 0 3 368 c3 357 4 368 25 408 29 55 72 96 125
+							123 56 27 156 28 213 2z"/>
+						</g>
+					</svg>
+				</div>
+			</div>
+			<div class="ion-padding-bottom" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-gap: 10px;">
+				<div routerLink="/murottal" class="border-primary-contrast border-card pb-100 p-relative">
+					<div class="p-absolute d-flex flex-column ion-align-items-center ion-justify-content-center w-100 h-100">
+						<ion-icon name="musical-note" style="font-size: 22pt; margin-bottom: .5rem;"></ion-icon>
+						<!-- <div style="font-size: 39pt; height: 29px; width: 29px; display: flex; align-items: center; justify-content: center; margin-bottom: .5rem">ت</div> -->
+						<div>Murottal</div>
+					</div>
+				</div>
+				<div routerLink="/quran" class="border-primary-contrast border-card pb-100 p-relative">
+					<div class="p-absolute d-flex flex-column ion-align-items-center ion-justify-content-center w-100 h-100">
+						<ion-icon name="book" style="font-size: 22pt; margin-bottom: .5rem;"></ion-icon>
+						<div>Al-Quran</div>
+					</div>
+				</div>
+				<div routerLink="/kalender" class="border-primary-contrast border-card pb-100 p-relative o-hidden">
+					<div class="p-absolute d-flex flex-column ion-align-items-center ion-justify-content-center w-100 h-100">
+						<ion-icon name="calendar" style="font-size: 22pt; margin-bottom: .5rem;"></ion-icon>
+						<div>Hijriah</div>
+					</div>
+					<div class="p-absolute" style="font-size: 9pt; background: var(--ion-color-primary-800); color: var(--ion-color-primary); padding: 3px 0; text-align: center; width: 120px; border-radius: 5px; transform: rotate(45deg) translate(4px, 3px);">Coming<br>Soon</div>
+				</div>
+				<div routerLink="/kiblat" class="border-primary-contrast border-card pb-100 p-relative o-hidden">
+					<div class="p-absolute d-flex flex-column ion-align-items-center ion-justify-content-center w-100 h-100">
+						<ion-icon name="compass" style="font-size: 22pt; margin-bottom: .5rem;"></ion-icon>
+						<div>Kiblat</div>
+					</div>
+					<div class="p-absolute" style="font-size: 9pt; background: var(--ion-color-primary-800); color: var(--ion-color-primary); padding: 3px 0; text-align: center; width: 120px; border-radius: 5px; transform: rotate(45deg) translate(4px, 3px);">Coming<br>Soon</div>
+				</div>
+			</div>
+		</div>
+		<div class="flex-1 shadow-card-up ion-padding b-background mt--2 border-top-2 o-auto p-relative">
+			<div class="mb-2">
+				<h3 class="ion-no-margin"><b>Tahsin</b></h3>
+				<small class="c-medium">Membaca Al Qur'an dengan benar sesuai dengan 5 perkara.</small>
+			</div>
+			<div class="">
+				<div routerLink="/tahsin" [queryParams]="{id: t._id}" *ngFor="let t of dataTahsin; let i = index;" class="ion-padding d-flex ion-align-items-center mb-2 border-card b-primary c-primary-contrast shadow-card">
+					<div class="ion-margin-end" style="font-size: 35pt; font-weight: bold; opacity: 1; line-height: 0; margin-bottom: -4px;" [innerHtml]="arabNumber[i + 1]">
+					</div>
+					<div class="flex-1 mr-1">
+						<h4 class="ion-no-margin"><b>{{t.nama}}</b></h4>
+						<!-- <small>{{t.keterangan}}</small> -->
+					</div>
+					<div>
+						<ion-icon name="chevron-forward-outline"></ion-icon>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+<!-- 	<div class="d-flex ion-align-items-center mb-2">
+		<div class="header-title flex-shrink-0 mr-2">Beranda</div>
+		<ion-searchbar mode="ios" placeholder="Cari Surat atau tafsir" class="ion-no-padding"></ion-searchbar>
+	</div>
+
+	<ion-card mode="ios" color="primary" class="ion-no-margin ion-padding d-flex mb-2 ion-align-items-center">	
+		<ion-icon name="bookmark" class="w-3 h-3 mr-2"></ion-icon>
+		<div class="flex-1">
+			<small>Terakhir Dibaca</small>
+			<h3 class="ion-no-margin"><b>Al Fatihah : 1</b></h3>
+		</div>
+		<ion-icon name="chevron-forward" class="w-3 h-3"></ion-icon>
+	</ion-card>
+
+	<ion-card mode="ios" color="primary" class="ion-no-margin ion-padding d-flex mb-2 ion-align-items-center">	
+		<ion-icon name="volume-medium" class="w-3 h-3 mr-2"></ion-icon>
+		<div class="flex-1">
+			<small>Terakhir Didengar</small>
+			<h3 class="ion-no-margin"><b>Al Fatihah : 1</b></h3>
+		</div>
+		<ion-icon name="play" class="w-3 h-3"></ion-icon>
+	</ion-card> -->
+
+	<!-- <h3 class="ion-no-margin mt-1 mb-1 c-medium-tint"><b>Topik</b></h3>
+	<ion-card mode="ios" class="ion-no-margin ion-padding h-6r d-flex mb-2 ion-align-items-center">
+	</ion-card>	 -->
+</ion-content>

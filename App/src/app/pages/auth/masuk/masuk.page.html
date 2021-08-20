@@ -1,0 +1,32 @@
+<ion-content class="ion-padding">
+	<div class="h-100 d-flex flex-column">
+		<div class="flex-2"></div>
+		<form [formGroup]="form" id="formlagin" (ngSubmit)="masuk()" class="flex-1 flex-shrink-0 d-flex flex-column">
+			<ion-item lines="none" class="border-card mb-2 b-light">
+				<ion-label [color]="form.controls.eAn.invalid && form.controls.eAn.dirty? 'danger' : 'primary'" position="floating">Masuk dengan Email</ion-label>
+				<ion-input type="text" name="eAn" formControlName="eAn"></ion-input>
+			</ion-item>
+			<div class="p-relative">
+				<div class="p-absolute r-0 h-100 d-flex ion-align-items-center ion-justify-content-center w-3r" style="z-index: 10;" (click)="showPass = !showPass">
+					<ion-icon [name]="showPass? 'eye-off' : 'eye'" [color]="showPass? 'primary' : 'medium'"></ion-icon>
+				</div>
+				<ion-item lines="none" class="border-card b-light">
+					<ion-label [color]="form.controls.password.invalid && form.controls.eAn.dirty? 'danger' : 'primary'" position="floating">Password</ion-label>
+					<ion-input [type]="showPass? 'text' : 'password'" name="password" formControlName="password" required></ion-input>
+				</ion-item>
+			</div>
+			<div style="transition: transform .5s; z-index: 10;">
+				<div class="d-flex" style="padding: 1rem 0 0 0; height: 32px;">
+					<div class="flex-1 c-danger text-max text-max-1" style="font-size: 9pt; padding: 0 16px;"><span *ngIf="form.errors">{{form.errors.err}}</span></div>
+				</div>
+				<ion-button type="submit" mode="ios" color="primary" class="w-100 h-auto ion-no-margin">
+					<div class="my-2 d-flex ion-align-items-center ion-justify-content-center">
+						<div [class.opacity-0]="loadingLogin">Masuk</div>
+						<ion-spinner *ngIf="loadingLogin" color="light" class="p-absolute"></ion-spinner>
+					</div>
+				</ion-button>
+			</div>
+		</form>
+		<div class="ion-text-center c-medium"><small>Belum punya akun? <a routerLink="/daftar" routerDirection="forward" class="c-primary td-none"><b>Daftar</b></a></small></div>
+	</div>
+</ion-content>

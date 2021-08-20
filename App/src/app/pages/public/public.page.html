@@ -1,0 +1,29 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom" class="shadow-card-up b-primary-900 c-dark-tint contain-layout">
+    <ion-tab-button tab="beranda" class="b-primary-900">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Beranda</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="murottal" class="b-primary-900">
+      <ion-icon name="musical-note"></ion-icon>
+      <ion-label>Murottal</ion-label>
+    </ion-tab-button>
+    <!-- <ion-tab-button tab="voice" class="b-primary c-light border-round">
+      <ion-icon name="mic"></ion-icon>
+    </ion-tab-button> -->
+    
+    <ion-tab-button class="p-relative b-primary c-primary-contrast border-round tb-o-visible" style="z-index: 10; margin-top: -50px; height: 56px; flex-basis: 56px; flex-grow: 0; flex-shrink: 0; padding: 2px; border: 2px solid var(--ion-color-primary-900);" (click)="voice()">
+      <ion-icon name="mic"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="quran" class="b-primary-900">
+      <ion-icon name="book"></ion-icon>
+      <ion-label>Al-Quran</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="akun" class="b-primary-900">
+      <ion-icon name="person-circle"></ion-icon>
+      <ion-label>Akun</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+

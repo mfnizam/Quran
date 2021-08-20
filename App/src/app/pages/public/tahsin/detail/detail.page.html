@@ -1,0 +1,58 @@
+<ion-content>
+	<div class="d-none back-btn ion-no-padding font-bold mr-2" style="position: fixed; font-size: 20pt; left: 18px; top: 18px; z-index: 10; z-index: 12;">
+		<ion-icon name="arrow-back" (click)="goBack()"></ion-icon>
+	</div>
+	<div class="h-100 d-flex flex-column b-primary-900">
+		<div style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0;">
+			<div class="p-absolute c-primary w-100 h-100 b-primary-800 d-flex flex-column ion-align-items-center ion-justify-content-center">
+				<ion-icon name="videocam-off-outline" style="font-size: 100pt; color: var(--ion-color-primary-500)" ></ion-icon>
+				<div>Video Tidak Tersedia</div>
+				<div>Pilih Video Materi</div>
+			</div>
+
+			<div *ngIf="loadinVideo" class="p-absolute c-primary w-100 h-100 b-primary-800 d-flex flex-column ion-align-items-center ion-justify-content-center" style="z-index: 10;">	
+				<div class="mb-1" style="height: 32px; width: 50px;">
+					<ion-spinner color="primary" style="width: 50px;"></ion-spinner>
+				</div>
+				<div style="margin-left: 14px;">Memuat Video...</div>
+			</div>
+
+	    <iframe *ngIf="youtubeLink" class="b-primary-800" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" width="560" height="315" [src]="youtubeLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen (load)="iframeLoad()"></iframe>
+	    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/S4BHsds9VkI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen autoplay></iframe> -->
+		</div>
+		<div class="flex-1 b-background ion-padding">
+			<div class="fs-20pt mb-2 d-flex ion-align-items-center">
+				
+				<b>{{dataMateri?.nama}} {{dataMateri?.arab}}</b>
+			</div>
+			<div class="mb-2" style="white-space: pre-wrap;">{{dataMateri.keterangan}}</div>
+			<div>
+				<div *ngFor="let d of dataMateri?.detail" class="border-card b-primary c-primary-contrast mb-2 ion-padding d-flex ion-align-items-center" (click)="putar(d)">
+					<div class="flex-1">
+						<div class="d-flex ion-align-items-start">
+							<div class="flex-1">
+								<h3 class="ion-no-margin"><b>{{d.nama}}</b></h3>
+								<div *ngIf="d.sub" class="opacity-4">{{d.sub}}</div>
+							</div>
+							<div class="fs-20pt d-flex border-round border-primary-contrast p-1">
+								<ion-icon name="play" style="transform: translateX(1.2px);"></ion-icon>
+							</div>
+						</div>
+						<div class="">
+							<!-- <ul [ngClass]="d.keterangan.length > 1? 'ion-padding-start' : 'list-style-none ion-no-padding mb-0 mt-0'"> -->
+							<ul class="ion-padding-start mt-1">
+								<li *ngFor="let k of d.keterangan" [ngStyle]="k.keterangan || d.keterangan.length > 1? {'margin-top': '1rem', 'padding-start': '16px'} : {'list-style': 'none', 'padding': 0, 'margin-left': '-16px'}">
+									<div [ngStyle]="k.keterangan? {'font-size': '14pt', 'margin-bottom': '.3rem', 'font-weight': 'bold'} : ''" style="white-space: pre-wrap;">{{k.nama}}</div>
+									<div style="white-space: pre-wrap;">{{k.keterangan}}</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- <div class="fs-20pt d-flex border-round border-primary-contrast p-1">
+						<ion-icon name="play" style="transform: translateX(1.2px);"></ion-icon>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</ion-content>

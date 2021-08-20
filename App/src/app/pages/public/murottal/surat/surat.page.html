@@ -1,0 +1,47 @@
+<ion-content>
+	<div class="h-100 d-flex flex-column o-hidden">
+		<div class="b-primary c-primary-contrast w-100 pb-2"> 
+			<div class="d-flex ion-padding fs-20pt">
+				<div class="d-none back-btn ion-no-padding font-bold mr-1"><ion-icon name="arrow-back" (click)="goBack()"></ion-icon></div>
+				<div class="flex-1 ion-text-capitalize">
+					<div class="text-max text-max-1 wp-nowrap"><b>Daftar Surat</b></div>
+				</div>
+				<div class="d-flex ion-align-items-center border-primary-900 border-card px-1" style="font-size: 12pt;" (click)="simpan()">
+					 <ion-icon name="checkmark-outline"></ion-icon><div class="ml-05">Simpan</div> 
+				</div>
+			</div>
+		</div>
+
+		<div class="flex-1 shadow-card-up mt--2 border-top-2 b-primary-900 o-auto p-relative ion-padding-start ion-padding-end">
+			<!-- <ion-content class="ion-padding-start ion-padding-end b-primary-900 pb-3">
+				<ion-virtual-scroll [items]="dataSurat" approxItemHeight="80px">
+					<div *virtualItem="let s;" class="c-dark-tint d-flex ion-align-items-center px-1 pt-1">
+						<div class="w-3r"><b>{{s.urutan}}</b></div>
+						<div class="flex-1 d-flex ion-align-items-center py-2 border-bottom-primary-750">
+							<div class="flex-1">
+								<h5 class="ion-no-margin"><b>{{s.nama}}</b></h5>
+								<small class="ion-text-capitalize">{{s.turun}} - {{s.jumlahAyat}} Ayat</small>
+							</div>
+							<div class="fs-20pt d-flex" [class.c-primary]="s.playlist" (click)="s['playlist'] = !s['playlist']">
+								<ion-icon [name]="s.playlist? 'checkmark-circle-outline' : 'add-circle-outline'"></ion-icon>
+							</div>
+						</div>
+					</div>
+				</ion-virtual-scroll>
+			</ion-content> -->
+			
+				<div *ngFor="let s of dataSurat; trackBy: suratTrackBy;" class="c-dark-tint d-flex ion-align-items-center px-1 pt-1">
+					<div class="w-3r"><b>{{s.urutan}}</b></div>
+					<div class="flex-1 d-flex ion-align-items-center py-2 border-bottom-primary-750">
+						<div class="flex-1">
+							<h5 class="ion-no-margin"><b>{{s.nama}}</b></h5>
+							<small class="ion-text-capitalize">{{s.turun}} - {{s.jumlahAyat}} Ayat</small>
+						</div>
+						<div class="fs-20pt d-flex" [class.c-primary]="s.playlist" (click)="s['playlist'] = !s['playlist']">
+							<ion-icon [name]="s.playlist? 'checkmark-circle-outline' : 'add-circle-outline'"></ion-icon>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+</ion-content>

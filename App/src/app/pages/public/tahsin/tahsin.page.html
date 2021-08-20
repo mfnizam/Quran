@@ -1,0 +1,33 @@
+<ion-content>
+	<div class="h-100 d-flex flex-column o-hidden b-primary-900">
+		<div class="b-primary c-primary-contrast w-100 pb-2"> 
+			<div class="d-flex ion-padding">
+				<div class="d-none back-btn ion-no-padding font-bold mr-1" style="font-size: 20pt; margin-top: 6px;">
+					<ion-icon name="arrow-back" (click)="goBack()"></ion-icon>
+				</div>
+				<div class="flex-1 ion-text-capitalize" style="min-height: 90px;">
+					<div class="text-max text-max-1 wp-nowrap" style="font-size: 20pt;"><b>{{dataTahsin?.nama}}</b></div>
+					<small>{{dataTahsin?.keterangan}}</small>
+					<div class="opacity-3"><small>{{dataTahsin?.materi?.length || 0}} Materi</small></div>
+				</div>
+			</div>
+			<div id="p-tahsin" class="o-auto-hidden ion-padding-start ion-padding-bottom pt-1 fs-10pt ws-nowrap scroll-hide">
+				<div *ngFor="let d of dataTahsinSekitar; trackBy: tahsinTrackBy;" [id]="'pp-' + d._id" class="ion-margin-end py-1 px-2 d-inline-block border-card" [ngClass]="d._id == dataTahsin?._id? 'b-primary-900 c-primary' : 'b-primary-shade'" (click)="changeTahsin(d._id, d.nama)">{{d.nama}}</div>
+			</div>
+		</div>
+		<div class="flex-1 ion-padding shadow-card-up mt--2 b-background border-top-2 o-auto p-relative">
+			<div routerLink="/tahsin/detail" [queryParams]="{t: dataTahsin?._id, id: m._id}" *ngFor="let m of dataTahsin?.materi" class="ion-padding border-card b-primary c-primary-contrast mb-2">
+				<div class=" d-flex ion-align-items-center">
+					<div class="flex-1 mr-1 d-flex ion-align-items-center">
+						<div class="flex-1 mr-1"><h3 class="ion-no-margin"><b>{{m.nama}}</b></h3></div>
+						<div><span class="fs-20pt">{{m.arab}}</span></div>
+						<!-- <div>{{m.definisi}}</div> -->
+					</div>
+					<!-- <div>
+						<ion-icon name="chevron-forward-outline"></ion-icon>
+					</div> -->
+				</div>
+			</div>
+		</div>		
+	</div>
+</ion-content>

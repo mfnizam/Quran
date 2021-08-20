@@ -1,0 +1,7 @@
+{
+  "name": "Quran",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

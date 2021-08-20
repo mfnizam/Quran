@@ -1,0 +1,24 @@
+{
+        "name": "Mad & Qashar",
+        "definisi": "Mad artinya panjang sesuai dengan sifat dan huruf mad, sedangkan Qashar itu dipendekkan selain dari pada huruf mad.",
+        "contoh bacaan": "Dalam Al Qur'an riwayat Hafs 'an 'Ashim yang sering kita baca di Al Qur'an cetakan Indonesia ada beberapa bacaan yang tertulis panjang tapi dibaca pendek, begitu juga tertulis pendek tapi dibaca panjang. Dinamakan Shifr Mustadir dan Mustahil akan banyak ditemukan dalam Al Qur'an.",
+        "Shifr Mustadir": {
+            "arti" : "Shifr artinya bulat atau bundar, sedangkan mustadir melingkar atau berputar. Dalam pengertian umum biasa dikatakan bulatan sempurna.",
+            "tanda": "Lingkaran kecil (o) pada lafal yang diqasharkan.",
+            "huruf": "Banyak di dalam Al Qur'an biasanya di huruf alif, wauw, dan ya' dengan letaknya ditengah atau akhir kata.",
+            "bacaan": "tertulis لِشَا۫ئٍ , dibaca لِشَئٍ",
+            "caranya": {
+                "1" : "Bacaan dalam al-Qur’an yang bertanda Shafrun Mustadir harus dibaca pendek, baik diwashalkan (terus) maupun diwakafkan (berhenti)."
+            }
+        },
+        "Shifr Mustahil": {
+            "arti" : "Shifr artinya bulat atau bundar, sedangkan mustahil berdiri. Dalam pengertian umum biasa dikatakan bulatan lonjong.",
+            "tanda": "Lingkaran kecil (0) pada lafal yang diqasharkan.",
+            "huruf": "Ada 6 di dalam Al Qur'an biasanya dihuruf alif dengan letak diakhir kata.",
+            "bacaan": "tertulis اَنَاْ , dibaca lanjut اَنَ, dibaca waqaf اَنَا",
+            "caranya": {
+                "1" : "Tetap dibaca panjang ketika diwakafkan (berhenti).",
+                "2" : "Tetap dibaca pendek ketika di washalkan (terus)."
+            }
+        }
+}
