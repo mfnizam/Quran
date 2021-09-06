@@ -8,6 +8,18 @@ import { QuranService, Surat } from '../quran/quran.service';
 
 import { Howl, Howler } from 'howler';
 
+Howl.prototype.changeSong = function(o, a) {
+  var self = this;
+  self.unload();
+  self._duration = 0; // init duration
+  self._autoplay = a;
+  self._sprite = {};// init sprite
+  self._src = typeof o.src !== 'string' ? o.src : [o.src];
+  self._format = typeof o.format !== 'string' ? o.format : [o.format];
+  self.load(); // => update duration, sprite(var timeout)
+  if(a) self.play();
+};
+
 export class Qori {
   _id: any;
   nama: string;
@@ -139,20 +151,24 @@ export class AudioService {
 
 
   // ================= Murottal ========================
-  playerMurottalPreload(src){
-    console.log(src)
-    if(this.playingMurottal) this.playingMurottal.unload();
+  playerMurottalPreload(src, autoPlay = false){
+    clearTimeout(this.timeoutMurottal);
     this.playerMurottal.loaded = false;
-    this.playingMurottal = new Howl({
-      src: [src],
-      html5: true,
-      onload: this.playerMurottalOnload,
-      onplay: this.playerMurottalOnplay,
-      onpause : this.playerMurottalOnpause,
-      onend: this.playerMurottalOnend,
-      onmute: this.playerMurottalOnmute,
-      volume: 1
-    })
+    if (this.playingMurottal == null) {
+      this.playingMurottal = new Howl({
+        src: [src],
+        html5: true,
+        onload: this.playerMurottalOnload,
+        onplay: this.playerMurottalOnplay,
+        onpause : this.playerMurottalOnpause,
+        onend: this.playerMurottalOnend,
+        onmute: this.playerMurottalOnmute,
+        volume: 1,
+        autoplay: autoPlay
+      })
+    } else {
+      this.playingMurottal.changeSong({src: src, format: 'mp3'}, autoPlay);
+    }
   }
 
   playerMurottalOnload = (v) => {
@@ -161,6 +177,7 @@ export class AudioService {
     this.playerMurottal.playIndex = this.getValuePlaylist().findIndex(v => v.urutan == this.getValuePlayMurottal()?.surat?.urutan);
   }
   playerMurottalOnplay = v => {
+    if(this.playerQuran.played) this.playerQuranPause();
     this.playerMurottal.played = true; 
     this.playerMurottal.playIndex = this.getValuePlaylist().findIndex(v => v.urutan == this.getValuePlayMurottal()?.surat?.urutan);
     this.playerMurottalCurrent();
@@ -188,11 +205,12 @@ export class AudioService {
   playerMurottalOnmute = v => {
     this.playerMurottal.muted = this.playingMurottal._muted;
   }
+  timeoutMurottal;
   playerMurottalCurrent(){
     let d = this.playingMurottal.seek();
     this.playerMurottal.currentTime = d;
     if(!this.playerMurottal.played) return;
-    setTimeout(_ => {
+    this.timeoutMurottal = setTimeout(_ => {
       this.playerMurottalCurrent();
     }, 300)
   }
@@ -211,16 +229,16 @@ export class AudioService {
     if(!pi && this.playerMurottal.repeat) pi = this.getValuePlaylist()[0];
     if(!pi || !this.getValuePlayMurottal()?.qori) return ;
     this.setPlayMurottal({surat: pi, qori: this.getValuePlayMurottal()?.qori});
-    this.playerMurottalPreload(this.getValuePlayMurottal().qori?.baseLink + String(this.getValuePlayMurottal().surat?.urutan).padStart(3, '0') + '.mp3');
-    if(this.playerMurottal.played) this.playingMurottal.play();
+    this.playerMurottalPreload(this.getValuePlayMurottal().qori?.baseLink + String(this.getValuePlayMurottal().surat?.urutan).padStart(3, '0') + '.mp3', this.playerMurottal.played);
+    // if(this.playerMurottal.played) this.playingMurottal.play();
   }
   playerMurottalPrev(){
     let pi = this.getValuePlaylist()[this.getValuePlaylist().findIndex(v => v.urutan == this.getValuePlayMurottal()?.surat?.urutan) - 1];
 
     if(!pi || !this.getValuePlayMurottal()?.qori) return ;
     this.setPlayMurottal({surat: pi, qori: this.getValuePlayMurottal()?.qori});
-    this.playerMurottalPreload(this.getValuePlayMurottal().qori?.baseLink + String(this.getValuePlayMurottal().surat?.urutan).padStart(3, '0') + '.mp3')
-    if(this.playerMurottal.played) this.playingMurottal.play();
+    this.playerMurottalPreload(this.getValuePlayMurottal().qori?.baseLink + String(this.getValuePlayMurottal().surat?.urutan).padStart(3, '0') + '.mp3', this.playerMurottal.played)
+    // if(this.playerMurottal.played) this.playingMurottal.play();
   }
   playerMurottalRepeat(){
     this.playerMurottal.repeat = this.playerMurottal.repeat < 2? this.playerMurottal.repeat + 1 : 0;
@@ -230,19 +248,23 @@ export class AudioService {
   }
 
   // ================= Quran ========================
-  playerQuranPreload(src){
-    if(this.playingQuran) this.playingQuran.unload();
+  playerQuranPreload(src, autoPlay = false){
+    clearTimeout(this.timeoutQuran);
     this.playerQuran.loaded = false;
-    this.playingQuran = new Howl({
-      src: /*['https://server7.mp3quran.net/s_gmd/001.mp3']*/[src],
-      html5: true,
-      onload: this.playerQuranOnload,
-      onplay: this.playerQuranOnplay,
-      onpause : this.playerQuranOnpause,
-      onend: this.playerQuranOnend,
-      // onmute: this.playerQuranOnmute,
-      volume: 1
-    })
+    if (this.playingQuran == null) {
+      this.playingQuran = new Howl({
+        src: [src],
+        html5: true,
+        onload: this.playerQuranOnload,
+        onplay: this.playerQuranOnplay,
+        onpause : this.playerQuranOnpause,
+        onend: this.playerQuranOnend,
+        volume: 1,
+        autoplay: autoPlay
+      })
+    } else {
+      this.playingQuran.changeSong({src: src, format: 'mp3'}, autoPlay);
+    }
   }
 
   playerQuranOnload = (v) => {
@@ -251,6 +273,7 @@ export class AudioService {
     this.playerQuran.currentTime = 0;
   }
   playerQuranOnplay = v => {
+    if(this.playerMurottal.played) this.playerMurottalPause();
     this.playerQuran.played = true;
     this.playerQuranCurrent();
   }
@@ -264,11 +287,12 @@ export class AudioService {
   playerQuranOnmute = v => {
     this.playerQuran.muted = this.playingMurottal._muted;
   }
+  timeoutQuran;
   playerQuranCurrent(){
     let d = this.playingQuran.seek();
     this.playerQuran.currentTime = d;
     if(!this.playerQuran.played) return;
-    setTimeout(_ => {
+    this.timeoutQuran = setTimeout(_ => {
       this.playerQuranCurrent();
     }, 300)
   }
@@ -288,9 +312,9 @@ export class AudioService {
 
     pq.urutan = pq.ayat >= pq.jAyat && this.playerQuran.repeat? pq.urutan - (pq.ayat - 1) : pq.urutan + 1;
     pq.ayat = pq.ayat >= pq.jAyat && this.playerQuran.repeat? 1 : pq.ayat + 1;
-    this.playerQuranPreload(this.urlQuran + pq.urutan + '.mp3');
+    this.playerQuranPreload(this.urlQuran + pq.urutan + '.mp3', (this.playerQuran.played || autoPlay));
     this.setPlayQuran(pq);
-    if(this.playerQuran.played || autoPlay) this.playingQuran.play();
+    // if(this.playerQuran.played || autoPlay) this.playingQuran.play();
   }
 
   playerQuranPrev(){
@@ -298,9 +322,31 @@ export class AudioService {
     if(pq.ayat < 2) return;
     pq.urutan -= 1;
     pq.ayat -= 1;
-    this.playerQuranPreload(this.urlQuran + pq.urutan + '.mp3');
+    this.playerQuranPreload(this.urlQuran + pq.urutan + '.mp3', this.playerQuran.played);
     this.setPlayQuran(pq);
-    if(this.playerQuran.played) this.playingQuran.play();
+    // if(this.playerQuran.played) this.playingQuran.play()
+  }
+
+  playingSambutan: Howler;
+  playerSambutanPreload(){
+    this.playerQuranPause();
+    this.playerMurottalPause();
+    if(this.playingSambutan) return;
+    this.playingSambutan = new Howl({
+      src: ['assets/sambutan.mp3'],
+      html5: true,
+      onend: this.playerSambutanOnend,
+      volume: 1,
+      autoplay: true
+    })
+  }
+
+  playerSambutanOnend(){
+
+  }
+
+  playerSambutanPlay(){
+    this.playingSambutan.play();
   }
 
 }

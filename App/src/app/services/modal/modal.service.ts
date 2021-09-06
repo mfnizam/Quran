@@ -70,19 +70,24 @@ export class ModalService {
 
   showConfirm(t, m, btnt = ['Cancel', 'Ok']) : Promise<boolean>{
     return new Promise((resolve, reject) => {
+      let btn = [{
+        text: btnt[0],
+        role: 'cancel',
+        handler: () => resolve(false)
+      }]
+      if(btnt.length > 1 ){
+        btn.push({
+          text: btnt[1],
+          role: 'ok',
+          handler: () => resolve(true)
+        })
+      }
       this.alert.create({
         cssClass: 'alert-custom',
         header: t,
         // subHeader: t,
         message: m,
-        buttons: [{
-          text: btnt[0],
-          role: 'cancel',
-          handler: () => resolve(false)
-        }, {
-          text: btnt[1],
-          handler: () => resolve(true)
-        }],
+        buttons: btn,
         mode: 'ios'
       }).then(p => p.present())
     })

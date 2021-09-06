@@ -37,7 +37,7 @@ export class QoriPage implements OnDestroy {
   simpan(){
     this.audio.setPlayMurottal({surat: this.audio.getValuePlayMurottal()?.surat, qori: this.dataQori.find(v => v._id == this.qoriPilih)});
     this.audio.playerMurottalPreload(this.audio.getValuePlayMurottal().qori?.baseLink + String(this.audio.getValuePlayMurottal().surat?.urutan).padStart(3, '0') + '.mp3')
-    if(this.audio.playerMurottal.played) this.audio.playingMurottal.play();
+    // if(this.audio.playerMurottal.played) this.audio.playingMurottal.play();
     this.goBack();
   }
 

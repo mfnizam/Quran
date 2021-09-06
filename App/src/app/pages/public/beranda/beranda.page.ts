@@ -23,7 +23,7 @@ export class BerandaPage implements OnDestroy {
   arabNumber = ["&\#1632;","&\#1633;","&\#1634;","&\#1635;","&\#1636;", "&\#1637;","&\#1638;","&\#1639;","&\#1640;","&\#1641;"];
   
   waktuSolat = [];
-  waktuSolatInterval;
+  waktuSolatTimeout;
   waktuSolatSelanjutnya = [];
   waktuSolatJarak;
 
@@ -35,11 +35,12 @@ export class BerandaPage implements OnDestroy {
     private user: UserService,
     private tahsin: TahsinService,
     private quran: QuranService) {
-    user.getDataUser()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(data => {
-      this.userData = data;
-    })
+    // user.getDataUser()
+    // .pipe(takeUntil(this.destroy$))
+    // .subscribe(data => {
+    //   this.userData = data;
+    // })
+    this.userData = user.getValueUser();
 
     storage.getStorage('user:bookmark').then(data => {
       if(data) quran.bookmark = data;
@@ -52,8 +53,9 @@ export class BerandaPage implements OnDestroy {
     this.server.waktuSolat('malang').then((data: any) => {
       if(data.status == "OK"){
         this.waktuSolat = Object.entries(data.results.datetime[0].times).filter(v => !("Sunrise Fajr Sunset Midnight".includes(v[0]))).map(v => v[0] == 'Imsak'? ["Subuh", v[1]] : v);
-        let wf = this.waktuSolat.filter(v => new Date('01/01/2000 ' + v[1]) > new Date('01/01/2000 ' + new Date().getHours() + ':' + new Date().getMinutes()));
-        this.waktuSolatSelanjutnya = wf.length > 0? wf : this.waktuSolat[0];
+        let wf = this.waktuSolat.some(v => new Date('01/01/2000 ' + v[1]) > new Date('01/01/2000 ' + new Date().getHours() + ':' + new Date().getMinutes()));
+
+        this.waktuSolatSelanjutnya = this.waktuSolat[0];
         this.waktu();
       }
     })
@@ -70,13 +72,14 @@ export class BerandaPage implements OnDestroy {
 
     let s = new Date(w.getTime() - new Date().getTime())
     this.waktuSolatJarak = (s.getUTCHours() == 0? '' : s.getUTCHours() + ' jam ') + s.getUTCMinutes() + ' Menit Lagi';
-
-    this.waktuSolatInterval = setInterval(() => { this.waktu() }, 10000)
+    
+    clearTimeout(this.waktuSolatTimeout);
+    this.waktuSolatTimeout = setTimeout(() => { this.waktu() }, 10000)
   };
 
   ionViewDidLeave(){
     console.log('keluar beranda')
-    clearInterval(this.waktuSolatInterval);
+    clearTimeout(this.waktuSolatTimeout);
   }
 
   openBookmark(){
@@ -92,6 +95,10 @@ export class BerandaPage implements OnDestroy {
         }
       })
     }
+  }
+
+  coming(f){
+    this.modal.showConfirm('Cooming Soon', 'Fitur ' + f + ' masih belum tersedia', ['Ok'])
   }
 
   ngOnDestroy(){

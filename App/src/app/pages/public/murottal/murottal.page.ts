@@ -51,8 +51,8 @@ export class MurottalPage implements OnDestroy{
 
 	playpause(){
 		if(!this.audio.playingMurottal){
-			this.audio.playerMurottalPreload(this.dataPlay?.qori?.baseLink + String(this.dataPlay?.surat?.urutan).padStart(3, '0') + '.mp3');
-			this.audio.playerMurottalPlay();
+			this.audio.playerMurottalPreload(this.dataPlay?.qori?.baseLink + String(this.dataPlay?.surat?.urutan).padStart(3, '0') + '.mp3', true);
+			// this.audio.playerMurottalPlay();
 		}else if(this.audio.playerMurottal.played) {
 			this.audio.playerMurottalPause();
 		}else{

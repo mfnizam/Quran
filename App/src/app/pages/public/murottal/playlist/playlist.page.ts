@@ -55,8 +55,8 @@ export class PlaylistPage implements OnDestroy {
     let d = this.audio.getValuePlayMurottal();
     this.audio.setPlayMurottal({surat: s, qori: d?.qori})
     if(s.urutan && d?.qori) {
-      this.audio.playerMurottalPreload(d?.qori?.baseLink + String(s.urutan).padStart(3, '0') + '.mp3');
-      this.audio.playerMurottalPlay();
+      this.audio.playerMurottalPreload(d?.qori?.baseLink + String(s.urutan).padStart(3, '0') + '.mp3', true);
+      // this.audio.playerMurottalPlay();
     }else{
       this.modal.showToast('Mohon pilih qori terlebih dahulu.', {color: 'dark'})
     }

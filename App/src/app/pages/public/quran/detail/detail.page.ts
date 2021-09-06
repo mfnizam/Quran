@@ -44,7 +44,7 @@ export class DetailPage implements OnDestroy{
     .subscribe(data => {
     	this.dataSurat = this.quran.surat.find(v => v.urutan == Number(data.surat));
       this.openAyat = data.ayat;
-      this.putarAyat = Boolean(data.putar);
+      this.putarAyat = data.putar == 'true';
       console.log(data.putar);
 
       let tAyat = Number(this.quran.surat.filter(v => v.urutan < data.surat).reduce((a, c) => a + c.jumlahAyat, 0));
@@ -87,8 +87,8 @@ export class DetailPage implements OnDestroy{
         this.modal.showLoading('Membuka bookmark...')
       }
 
-      if(this.openAyat > 0){
-        this.modal.showLoading((this.putarAyat? 'Memutar ' : 'Membuka') + ' ayat ' + this.openAyat + '...') 
+      if(this.openAyat > 0 || this.putarAyat){
+        this.modal.showLoading((this.putarAyat? 'Memutar Surat ' : 'Membuka ') + this.dataSurat.nama + ' ayat ' + this.openAyat + '...') 
       }
     })
 
@@ -119,6 +119,12 @@ export class DetailPage implements OnDestroy{
           let dp = this.dataAyat[(this.openAyat? this.openAyat - 1 : 1)];
           this.playpause(dp[0], dp[3]);
         }
+      }, 2000)
+    }else if(this.putarAyat){
+      setTimeout(_ => {
+        this.modal.hideLoading();
+        let dp = this.dataAyat[0];
+        this.playpause(dp[0], dp[3]);
       }, 1000)
     }
   }
@@ -154,12 +160,11 @@ export class DetailPage implements OnDestroy{
   }
 
   playpause(ayat, urutan){
-    console.log(this.dataPlay?.urutan, urutan)
     if(!this.audio.playingQuran || !this.audio.playerQuran.loaded || this.dataPlay?.urutan != urutan){
       this.audio.playerQuran.show = true;
+      this.audio.playerQuran.played = false;
       this.audio.setPlayQuran({surat: this.dataSurat.nama, urutan: urutan, ayat: ayat, jAyat: this.dataSurat.jumlahAyat});
-      this.audio.playerQuranPreload(this.audio.urlQuran + urutan + '.mp3');
-      this.audio.playerQuranPlay();
+      this.audio.playerQuranPreload(this.audio.urlQuran + urutan + '.mp3', true);
     }else if(this.audio.playerQuran.played) {
       this.audio.playerQuranPause();
     }else{
@@ -193,13 +198,13 @@ export class DetailPage implements OnDestroy{
 
   close(){
     this.audio.playerQuran.show = false;
-    this.audio.playerQuran.loaded = false;
+    // this.audio.playerQuran.loaded = false;
     this.audio.playerQuranPause();
     // this.audio.playingQuran.unload();
   }
 
   goBack(){
-  	this.navCtrl.back();
+  	this.navCtrl.back()
   }
 
   ngOnDestroy() {

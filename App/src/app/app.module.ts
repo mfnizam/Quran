@@ -28,17 +28,17 @@ const routes: Routes = [
   {
     path: 'masuk',
     loadChildren: () => import('./pages/auth/masuk/masuk.module').then( m => m.MasukPageModule),
-    // canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'daftar',
     loadChildren: () => import('./pages/auth/daftar/daftar.module').then( m => m.DaftarPageModule),
-    // canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService]
   },
   {
     path: '',
     loadChildren: () => import('./pages/public/public.module').then(m => m.PublicPageModule),
-    // canActivate: [PublicGuardService]
+    canActivate: [PublicGuardService]
   },
   {
     path: '**',

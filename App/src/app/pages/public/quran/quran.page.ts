@@ -68,7 +68,7 @@ export class QuranPage implements OnDestroy{
 
   close(){
     this.audio.playerQuran.show = false;
-    this.audio.playerQuran.loaded = false;
+    // this.audio.playerQuran.loaded = false;
     this.audio.playerQuranPause();
     // this.audio.playingQuran.unload();
   }

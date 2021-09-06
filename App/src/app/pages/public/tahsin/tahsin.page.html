@@ -16,16 +16,24 @@
 			</div>
 		</div>
 		<div class="flex-1 ion-padding shadow-card-up mt--2 b-background border-top-2 o-auto p-relative">
-			<div routerLink="/tahsin/detail" [queryParams]="{t: dataTahsin?._id, id: m._id}" *ngFor="let m of dataTahsin?.materi" class="ion-padding border-card b-primary c-primary-contrast mb-2">
-				<div class=" d-flex ion-align-items-center">
-					<div class="flex-1 mr-1 d-flex ion-align-items-center">
-						<div class="flex-1 mr-1"><h3 class="ion-no-margin"><b>{{m.nama}}</b></h3></div>
-						<div><span class="fs-20pt">{{m.arab}}</span></div>
-						<!-- <div>{{m.definisi}}</div> -->
+			<div *ngIf="dataTahsin?.materi?.length < 1" class="d-flex h-100 ion-align-items-center ion-justify-content-center c-primary">
+				<div style="font-size: 40pt; text-align: center;">
+					<div><b>Cooming</b></div>
+					<div><b>Soon</b></div>
+				</div>
+			</div>
+			<div *ngIf="dataTahsin?.materi?.length > 0">
+				<div routerLink="/tahsin/detail" [queryParams]="{t: dataTahsin?._id, id: m._id}" *ngFor="let m of dataTahsin?.materi" class="ion-padding border-card b-primary c-primary-contrast mb-2">
+					<div class=" d-flex ion-align-items-center">
+						<div class="flex-1 mr-1 d-flex ion-align-items-center">
+							<div class="flex-1 mr-1"><h3 class="ion-no-margin"><b>{{m.nama}}</b></h3></div>
+							<div><span class="fs-20pt">{{m.arab}}</span></div>
+							<!-- <div>{{m.definisi}}</div> -->
+						</div>
+						<!-- <div>
+							<ion-icon name="chevron-forward-outline"></ion-icon>
+						</div> -->
 					</div>
-					<!-- <div>
-						<ion-icon name="chevron-forward-outline"></ion-icon>
-					</div> -->
 				</div>
 			</div>
 		</div>		
